@@ -1,11 +1,14 @@
 package main
 
 import (
-	"../cmd"
-	"../framework"
 	"fmt"
-	"github.com/bwmarrin/discordgo"
 	"strings"
+
+	"disco.bot/src/framework"
+
+	"disco.bot/src/cmd"
+
+	"github.com/bwmarrin/discordgo"
 )
 
 var (
@@ -65,9 +68,11 @@ func commandHandler(discord *discordgo.Session, message *discordgo.MessageCreate
 	}
 	content := message.Content
 	if len(content) <= len(PREFIX) {
+		fmt.Println("Len<=Len")
 		return
 	}
 	if content[:len(PREFIX)] != PREFIX {
+		fmt.Println("Pref!=preif")
 		return
 	}
 	content = content[len(PREFIX):]
@@ -114,7 +119,7 @@ func registerCommands() {
 	CmdHandler.Register("clear", cmd.ClearCommand, "empty queue???")
 	CmdHandler.Register("current", cmd.CurrentCommand, "Name current song???")
 	CmdHandler.Register("youtube", cmd.YoutubeCommand, "???")
-    CmdHandler.Register("shuffle", cmd.ShuffleCommand, "Shuffle queue???")
-    CmdHandler.Register("pausequeue", cmd.PauseCommand, "Pause song in place???")
-    CmdHandler.Register("pick", cmd.PickCommand, "???")
+	CmdHandler.Register("shuffle", cmd.ShuffleCommand, "Shuffle queue???")
+	CmdHandler.Register("pausequeue", cmd.PauseCommand, "Pause song in place???")
+	CmdHandler.Register("pick", cmd.PickCommand, "???")
 }

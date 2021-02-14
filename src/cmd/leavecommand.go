@@ -1,6 +1,6 @@
 package cmd
 
-import "../framework"
+import "disco.bot/src/framework"
 
 func LeaveCommand(ctx framework.Context) {
 	sess := ctx.Sessions.GetByGuild(ctx.Guild.ID)

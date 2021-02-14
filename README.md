@@ -53,3 +53,4 @@ Go ahead, just bear in mind I've only been doing go for a few days.
 Developers of discordgo <3
 
 https://github.com/iopred/bruxism for stats command
+# Go-Discord-Music-Bot

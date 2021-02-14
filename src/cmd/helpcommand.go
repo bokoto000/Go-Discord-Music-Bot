@@ -1,9 +1,10 @@
 package cmd
 
 import (
-	"../framework"
 	"bytes"
 	"fmt"
+
+	"disco.bot/src/framework"
 )
 
 func HelpCommand(ctx framework.Context) {

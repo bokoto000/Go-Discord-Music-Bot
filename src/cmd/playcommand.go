@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"../framework"
+	"disco.bot/src/framework"
 )
 
 func PlayCommand(ctx framework.Context) {

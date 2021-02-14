@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"../framework"
+	"disco.bot/src/framework"
 )
 
 func ClearCommand(ctx framework.Context) {

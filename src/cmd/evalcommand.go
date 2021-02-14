@@ -1,11 +1,12 @@
 package cmd
 
 import (
-	"../framework"
 	"fmt"
+	"strings"
+
+	"disco.bot/src/framework"
 	"github.com/bwmarrin/discordgo"
 	"github.com/robertkrimen/otto"
-	"strings"
 )
 
 var vm = otto.New()

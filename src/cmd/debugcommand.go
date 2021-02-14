@@ -1,8 +1,9 @@
 package cmd
 
 import (
-	"../framework"
 	"bytes"
+
+	"disco.bot/src/framework"
 )
 
 func DebugCommand(ctx framework.Context) {

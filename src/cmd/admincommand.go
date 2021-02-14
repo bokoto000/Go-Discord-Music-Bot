@@ -1,13 +1,14 @@
 package cmd
 
 import (
-	"../framework"
 	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"os"
 	"strings"
+
+	"disco.bot/src/framework"
 )
 
 const todo_file_name = "todo.json"

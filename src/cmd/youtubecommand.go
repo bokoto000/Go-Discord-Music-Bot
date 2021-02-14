@@ -1,11 +1,12 @@
 package cmd
 
 import (
-	"../framework"
 	"bytes"
 	"fmt"
-	"github.com/bwmarrin/discordgo"
 	"strings"
+
+	"disco.bot/src/framework"
+	"github.com/bwmarrin/discordgo"
 )
 
 const result_format = "\n`%d` %s - %s (%s)"
@@ -29,6 +30,7 @@ func formatDuration(input string) string {
 }
 
 func YoutubeCommand(ctx framework.Context) {
+	fmt.Println("youtube")
 	if len(ctx.Args) == 0 {
 		ctx.Reply("Usage: `music youtube <search query>`")
 		return
@@ -45,10 +47,10 @@ func YoutubeCommand(ctx framework.Context) {
 		fmt.Println("Error searching youtube,", err)
 		return
 	}
-    if len(results) == 0 {
-        ctx.Reply("No results found for your query `" + query + "`.")
-        return
-    }
+	if len(results) == 0 {
+		ctx.Reply("No results found for your query `" + query + "`.")
+		return
+	}
 	buffer := bytes.NewBufferString("__Search results__ for `" + query + "`:\n")
 	for index, result := range results {
 		buffer.WriteString(fmt.Sprintf(result_format, index+1, result.Title, result.ChannelTitle,
