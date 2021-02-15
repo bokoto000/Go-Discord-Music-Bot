@@ -65,10 +65,10 @@ func SetDb() *Db {
 	query, err := ioutil.ReadFile("configDatabase.sql")
 	queryString := string(query)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	if _, err := db.Exec(queryString); err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	database := new(Db)
 	database.db = db
@@ -81,7 +81,7 @@ func (db *Db) Close() {
 
 func (database *Db) GetKeywordValue(guild_id string, key string) (bool, string) {
 	db := database.db
-	rows, err := db.Query("SELECT * FROM keywords WHERE keyword")
+	rows, err := db.Query("SELECT * FROM keywords WHERE keyword_key=$1", key)
 	if checkErrBool(err) {
 		fmt.Println("Error working with database")
 		return false, "Error running query for get keyword value"
@@ -104,9 +104,10 @@ func (database *Db) GetKeywordValue(guild_id string, key string) (bool, string) 
 func (database *Db) Insert(guild_id string, key string, value string) bool {
 	db := database.db
 	var lastInsertId int
-	err = db.QueryRow("INSERT INTO userinfo(guild_id,keyword_key,keyword_value) VALUES($1,$2,$3) returning id;", guild_id, key, value).Scan(&lastInsertId)
+	err = db.QueryRow("INSERT INTO keywords(guild_id,keyword_key,keyword_value) VALUES($1,$2,$3) returning id;", guild_id, key, value).Scan(&lastInsertId)
 	if checkErrBool(err) {
 		fmt.Println("Error working with database")
+		fmt.Println(err)
 		return false
 	}
 	fmt.Println("last inserted id =", lastInsertId)

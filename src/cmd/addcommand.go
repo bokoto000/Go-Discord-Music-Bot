@@ -21,9 +21,12 @@ func AddCommand(ctx framework.Context) {
 	msg := ctx.Reply("Adding songs to queue...")
 	for _, arg := range ctx.Args {
 		t, inp, err := ctx.Youtube.Get(arg)
-
+		check, res := ctx.Db.GetKeywordValue(ctx.Guild.ID, arg)
+		if check {
+			t, inp, err = ctx.Youtube.Get(res)
+		}
 		if err != nil {
-			ctx.Reply("An error occured!")
+			ctx.Reply("Please use keyword or link to youtube!")
 			fmt.Println(err)
 			fmt.Println("error getting input, %s", err)
 			return

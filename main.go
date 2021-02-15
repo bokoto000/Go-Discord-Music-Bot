@@ -28,8 +28,9 @@ func init() {
 
 }
 
+var db *database.Db
+
 func main() {
-	var db *database.Db
 	db = database.SetDb()
 	defer db.Close()
 
@@ -53,7 +54,7 @@ func main() {
 	}
 	botId = usr.ID
 	discord.AddHandler(commandHandler)
-	discord.AddHandler(func(discord *discordgo.Session, ready *discordgo.Ready, db *database.Db) {
+	discord.AddHandler(func(discord *discordgo.Session, ready *discordgo.Ready) {
 		discord.UpdateStatus(0, conf.DefaultStatus)
 		guilds := discord.State.Guilds
 		fmt.Println("Ready with", len(guilds), "guilds.")
@@ -67,7 +68,7 @@ func main() {
 	<-make(chan struct{})
 }
 
-func commandHandler(discord *discordgo.Session, message *discordgo.MessageCreate, db *database.Db) {
+func commandHandler(discord *discordgo.Session, message *discordgo.MessageCreate) {
 	user := message.Author
 	if user.ID == botId || user.Bot {
 		return
@@ -116,7 +117,9 @@ func registerCommands() {
 	CmdHandler.Register("play", cmd.PlayCommand, "Plays whats in the queue")
 	CmdHandler.Register("stop", cmd.StopCommand, "Stops the music")
 	CmdHandler.Register("add", cmd.AddCommand, "Add a song to the queue !add <youtube-link>")
+	CmdHandler.Register("cheers", cmd.CheersCommand, "Add a song to the queue and cheer !add <youtube-link> <cheers>")
 	CmdHandler.Register("queue", cmd.QueueCommand, "Print queue???")
 	CmdHandler.Register("clear", cmd.ClearCommand, "empty queue???")
-	CmdHandler.Register("youtube", cmd.YoutubeCommand, "???")
+	CmdHandler.Register("youtube", cmd.YoutubeCommand, "")
+	CmdHandler.Register("keyword", cmd.AddKeywordCommand, "Adds keyowrd")
 }

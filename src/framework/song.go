@@ -10,6 +10,7 @@ type Song struct {
 	Title    string
 	Duration *string
 	Id       string
+	Cheers   string
 }
 
 func (song Song) Ffmpeg() *exec.Cmd {
@@ -22,5 +23,14 @@ func NewSong(media, title, id string) *Song {
 	song.Media = media
 	song.Title = title
 	song.Id = id
+	return song
+}
+
+func NewSongCheers(media, title, id string, cheers string) *Song {
+	song := new(Song)
+	song.Media = media
+	song.Title = title
+	song.Id = id
+	song.Cheers = cheers
 	return song
 }

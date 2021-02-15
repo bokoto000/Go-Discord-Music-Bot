@@ -1,10 +1,9 @@
 package framework
 
 import (
-	"database/sql"
 	"fmt"
 
-	"github.com/bokoto000/Go-Discord-Music-Bot/src/database"
+	"disco.bot/src/database"
 	"github.com/bwmarrin/discordgo"
 )
 
@@ -21,7 +20,7 @@ type Context struct {
 	CmdHandler *CommandHandler
 	Sessions   *SessionManager
 	Youtube    *Youtube
-	db         *sql.DB
+	Db         *database.Db
 }
 
 func NewContext(discord *discordgo.Session, guild *discordgo.Guild, textChannel *discordgo.Channel,
@@ -37,7 +36,7 @@ func NewContext(discord *discordgo.Session, guild *discordgo.Guild, textChannel 
 	ctx.CmdHandler = cmdHandler
 	ctx.Sessions = sessions
 	ctx.Youtube = youtube
-	ctx.db = db
+	ctx.Db = db
 	return ctx
 }
 

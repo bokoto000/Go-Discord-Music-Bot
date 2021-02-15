@@ -11,7 +11,7 @@ func (queue SongQueue) Get() []Song {
 }
 
 func (queue *SongQueue) Set(list []Song) {
-    queue.list = list
+	queue.list = list
 }
 
 func (queue *SongQueue) Add(song Song) {
@@ -39,6 +39,9 @@ func (queue *SongQueue) Start(sess *Session, callback func(string)) {
 	queue.Running = true
 	for queue.HasNext() && queue.Running {
 		song := queue.Next()
+		if len(song.Cheers) > 0 {
+			callback(song.Cheers)
+		}
 		callback("Now playing `" + song.Title + "`.")
 		sess.Play(song)
 	}
@@ -54,7 +57,7 @@ func (queue *SongQueue) Current() *Song {
 }
 
 func (queue *SongQueue) Pause() {
-    queue.Running = false
+	queue.Running = false
 }
 
 func newSongQueue() *SongQueue {
