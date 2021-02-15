@@ -12,6 +12,7 @@ func AddCommand(ctx framework.Context) {
 			"`youtube id`, `soundcloud id`")
 		return
 	}
+	fmt.Println(ctx.Guild.ID)
 	sess := ctx.Sessions.GetByGuild(ctx.Guild.ID)
 	if sess == nil {
 		ctx.Reply("Not in a voice channel! To make the bot join one, use `music join`.")

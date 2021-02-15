@@ -1,7 +1,10 @@
 package framework
 
 import (
+	"database/sql"
 	"fmt"
+
+	"github.com/bokoto000/Go-Discord-Music-Bot/src/database"
 	"github.com/bwmarrin/discordgo"
 )
 
@@ -14,16 +17,16 @@ type Context struct {
 	Message      *discordgo.MessageCreate
 	Args         []string
 
-	// dependency injection?
 	Conf       *Config
 	CmdHandler *CommandHandler
 	Sessions   *SessionManager
 	Youtube    *Youtube
+	db         *sql.DB
 }
 
 func NewContext(discord *discordgo.Session, guild *discordgo.Guild, textChannel *discordgo.Channel,
 	user *discordgo.User, message *discordgo.MessageCreate, conf *Config, cmdHandler *CommandHandler,
-	sessions *SessionManager, youtube *Youtube) *Context {
+	sessions *SessionManager, youtube *Youtube, db *database.Db) *Context {
 	ctx := new(Context)
 	ctx.Discord = discord
 	ctx.Guild = guild
@@ -34,6 +37,7 @@ func NewContext(discord *discordgo.Session, guild *discordgo.Guild, textChannel 
 	ctx.CmdHandler = cmdHandler
 	ctx.Sessions = sessions
 	ctx.Youtube = youtube
+	ctx.db = db
 	return ctx
 }
 
