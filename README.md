@@ -39,18 +39,4 @@ Create a `config.json` file in the project root using this template:
 | music play [file] | plays a music file                                            |
 | music stop        | stops playing the current song                                |
 | music leave       | leaves the voice channel                                      |
-| music eval [code] | runs javascript (bot owner only)                              |
-| music info        | shows bot info and statistics                                 |
-| music stopbot     | stops the bot (bot owner only)                                |
 
-## Support
-This is not for public use. If you don't know GO I do not recommend using this and I will not provide support for that.
-
-## Pull requests & issues
-Go ahead, just bear in mind I've only been doing go for a few days.
-
-## Credit
-Developers of discordgo <3
-
-https://github.com/iopred/bruxism for stats command
-# Go-Discord-Music-Bot
